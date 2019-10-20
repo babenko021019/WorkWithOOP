@@ -26,5 +26,6 @@ public class ApplicationRunner {
 
         System.out.println("Triangle with height " + triangle.getHeight() +
                 " with base " + triangle.getBase() + " has area " + triangle.getArea());
+
     }
 }
