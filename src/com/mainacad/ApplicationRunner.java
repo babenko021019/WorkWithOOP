@@ -1,31 +1,43 @@
 package com.mainacad;
 
+import com.mainacad.abc.Shape;
 import com.mainacad.circle.Circle;
 import com.mainacad.square.Square;
-import com.mainacad.triangle.Triangle;
+import com.mainacad.treangle.Treangle;
 
 public class ApplicationRunner {
 
     public static void main(String[] args) {
 
-        Square square = new Square();
-        square.setSide(10.0);
-
-        System.out.println("Square with side " + square.getSide() +
-                " has area " + square.getArea());
+        Treangle treangle = new Treangle();
+        treangle.setHeight(20);
+        treangle.setBase(15);
 
         Circle circle = new Circle();
-        circle.setRadius(10.0);
+        circle.setRadius(10);
 
-        System.out.println("Circle with radius " + circle.getRadius() +
-                " has area " + circle.getArea());
+        Square square = new Square();
+        square.setSide(28);
 
-        Triangle triangle = new Triangle();
-        triangle.setHeight(7.4);
-        triangle.setBase(5.5);
+        Shape minShape;
 
-        System.out.println("Triangle with height " + triangle.getHeight() +
-                " with base " + triangle.getBase() + " has area " + triangle.getArea());
+        if (circle.getArea() < square.getArea()) {
+            minShape = circle;
+        } else {
+            minShape = square;
+        }
 
+        if (minShape.getArea() > treangle.getArea()) {
+            minShape = treangle;
+        }
+
+        System.out.println("Min shape is " + minShape.getClass().getSimpleName() +
+                " and has area " + minShape.getArea());
+
+        System.out.println("Treangle has area " + treangle.getArea());
+
+        System.out.println("Circle has area " + circle.getArea());
+
+        System.out.println("Square has area " + square.getArea());
     }
 }
