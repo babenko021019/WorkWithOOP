@@ -23,6 +23,14 @@ public class Treangle extends AbstractShape{
         this.base = base;
     }
 
+    public Treangle(double height, double base) {
+        this.height = height;
+        this.base = base;
+    }
+
+    public Treangle() {
+    }
+
     @Override
     public double getArea() {
         return (height * base) / 2;

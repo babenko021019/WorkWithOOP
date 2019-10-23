@@ -5,39 +5,56 @@ import com.mainacad.circle.Circle;
 import com.mainacad.square.Square;
 import com.mainacad.treangle.Treangle;
 
+import java.util.*;
+import java.util.logging.Logger;
+
 public class ApplicationRunner {
+
+    private static final Logger LOGGER = Logger.getLogger(ApplicationRunner.class.getName());
 
     public static void main(String[] args) {
 
-        Treangle treangle = new Treangle();
-        treangle.setHeight(20);
-        treangle.setBase(15);
+        Treangle treangle1 = new Treangle(15, 20);
+        Treangle treangle2 = new Treangle(20, 15);
+        Treangle treangle3 = new Treangle(26, 19);
 
-        Circle circle = new Circle();
-        circle.setRadius(10);
+        Circle circle1 = new Circle(20);
+        Circle circle2 = new Circle(10);
+        Circle circle3 = new Circle(15);
 
-        Square square = new Square();
-        square.setSide(28);
+        Square square1 = new Square(28);
+        Square square2 = new Square(68);
+        Square square3 = new Square(38);
 
-        Shape minShape;
+        List<Shape> shapes = new ArrayList<>();
+        shapes.add(treangle1);
+        shapes.add(treangle2);
+        shapes.add(treangle3);
+        shapes.add(circle1);
+        shapes.add(circle2);
+        shapes.add(circle3);
+        shapes.add(square1);
+        shapes.add(square2);
+        shapes.add(square3);
 
-        if (circle.getArea() < square.getArea()) {
-            minShape = circle;
-        } else {
-            minShape = square;
+        Shape maxShape = shapes.get(0);
+        for (int i = 1; i < shapes.size(); i++) {
+            if (maxShape.getArea() < shapes.get(i).getArea()) {
+                maxShape = shapes.get(i);
+            }
         }
 
-        if (minShape.getArea() > treangle.getArea()) {
-            minShape = treangle;
+        Shape minShape = shapes.get(0);
+        for (int i = 1; i < shapes.size(); i++) {
+            if (minShape.getArea() > shapes.get(i).getArea()) {
+                minShape = shapes.get(i);
+            }
         }
 
-        System.out.println("Min shape is " + minShape.getClass().getSimpleName() +
+        LOGGER.info("Max shape is " + maxShape.getClass().getSimpleName() +
+                " and has area " + maxShape.getArea());
+
+        LOGGER.info("Min shape is " + minShape.getClass().getSimpleName() +
                 " and has area " + minShape.getArea());
-
-        System.out.println("Treangle has area " + treangle.getArea());
-
-        System.out.println("Circle has area " + circle.getArea());
-
-        System.out.println("Square has area " + square.getArea());
     }
 }
